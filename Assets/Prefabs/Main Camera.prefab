@@ -804,10 +804,12 @@ MonoBehaviour:
   pauseScreen: {fileID: 0}
   winScreen: {fileID: 0}
   LoseScreen: {fileID: 0}
+  BonusPanel: {fileID: 0}
+  newRecordPanel: {fileID: 0}
+  pauseButton: {fileID: 0}
   timeText: {fileID: 0}
   timeWork: 1
   countDown: 0
-  inventoryPan: {fileID: 0}
   soundEffector: {fileID: 2894199560191374467}
   musicSource: {fileID: 2894199558676280946}
   soundSource: {fileID: 2894199559626161085}
@@ -823,30 +825,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bcd8c59989ef4f94a862baf143bef9a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  numbers:
-  - {fileID: 21300000, guid: 7f9944d67c55c254facc5f0d2b795028, type: 3}
-  - {fileID: 21300000, guid: c0e29f1d530bc0b4a9681370791f2514, type: 3}
-  - {fileID: 21300000, guid: 935fff63b2e283740bd180c78dcddea4, type: 3}
-  - {fileID: 21300000, guid: cd60f56abb86206488c47c471af879bf, type: 3}
-  - {fileID: 21300000, guid: ceed4475ee950df47a2f407916508759, type: 3}
-  - {fileID: 21300000, guid: f5f35d5e0ea86f84fa4f59f879364fd0, type: 3}
-  - {fileID: 21300000, guid: effdc27d0b7f2bb40bf52ca2de09b0b6, type: 3}
-  - {fileID: 21300000, guid: d0d4b9993b6cf444f9c2392f5ee414ef, type: 3}
-  - {fileID: 21300000, guid: 3099626863eb4ea4e8c0fcb170ef9a57, type: 3}
-  - {fileID: 21300000, guid: deeab9a6f7f90304390bc6d95acf05fb, type: 3}
-  hasYellowGem: {fileID: 21300000, guid: 501f17ebde8c3cd448bb7b731ee4a78d, type: 3}
-  noYellowGem: {fileID: 21300000, guid: 1c955a504caba3b4a8696f91261891a0, type: 3}
-  hasBlueGem: {fileID: 21300000, guid: ff39a8c5f51c0474ea393c72d1d31c4f, type: 3}
-  noBlueGem: {fileID: 21300000, guid: 1d2d39ad7466a154a826df2ade41175b, type: 3}
-  hasGreenGem: {fileID: 21300000, guid: 1d520bc90672490459ef5bce2c9ecbee, type: 3}
-  noGreenGem: {fileID: 21300000, guid: 0765a058c29bfb44eacebd378b88ffb6, type: 3}
-  hasKey: {fileID: 21300000, guid: 35702953f108f1741ae994438d171aa0, type: 3}
-  noKey: {fileID: 21300000, guid: e724a649b275ae84fa4bc9da780afcb9, type: 3}
-  heartImg: {fileID: 0}
+  yellowGemImg: {fileID: 0}
   blueGemImg: {fileID: 0}
   greenGemImg: {fileID: 0}
   keyImg: {fileID: 0}
-  player: {fileID: 0}
 --- !u!114 &2894199560191374467
 MonoBehaviour:
   m_ObjectHideFlags: 0

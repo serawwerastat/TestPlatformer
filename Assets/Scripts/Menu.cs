@@ -171,15 +171,15 @@ public class Menu : MonoBehaviour
 
     private void SetMedal(int levelIndex, float bestTime)
     {
-        var worstTimeForCurrentLevel = levelsWorstTime[levelIndex + 1];
+        var worstTimeForCurrentLevel = LevelsWorstTime[levelIndex + 1];
         var timeRatio = bestTime / worstTimeForCurrentLevel;
         levels[levelIndex].transform.GetChild(3).gameObject.SetActive(true);
         var medalImage = levels[levelIndex].transform.GetChild(3).GetComponent<Image>();
-        if (timeRatio < 0.15f)
+        if (timeRatio < 0.2f)
         {
             medalImage.sprite = goldMedal;
         }
-        else if (timeRatio < 0.5f && timeRatio >= 0.15f)
+        else if (timeRatio < 0.5f && timeRatio >= 0.2f)
         {
             medalImage.sprite = silverMedal;
         }

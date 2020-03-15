@@ -157,7 +157,8 @@ public class Player : MonoBehaviour
             // rb.AddForce(transform.up * jumpHeight, ForceMode2D.Impulse);
             // _anim.SetInteger("State", 3);
             _playerHelper.PlayJumpAnimation();
-            rb.velocity = Vector2.up * jumpHeight; 
+            // rb.velocity = Vector2.up * jumpHeight; 
+            rb.AddForce(transform.up * jumpHeight, ForceMode2D.Impulse);
             soundEffector.PlayJumpSound();
         }
     }
@@ -349,6 +350,16 @@ public class Player : MonoBehaviour
             _healthCountdownTimer = -1f;
             healthCountdown.fillAmount = 0f;
         }
+
+        if (other.gameObject.CompareTag(HiddenPass))
+        {
+            other.GetComponent<SpriteRenderer>().color = new Color(1,1,1, 0.5f);
+            SpriteRenderer[] spriteRenderers = other.GetComponentsInChildren<SpriteRenderer>();
+            foreach (var spriteRenderer in spriteRenderers)
+            {
+                spriteRenderer.color = new Color(1,1,1, 0.5f);
+            }
+        }
     }
 
     private void OnTriggerStay2D(Collider2D other)
@@ -414,6 +425,16 @@ public class Player : MonoBehaviour
         {
             _hitTimer = 0f;
             playerCountDown.fillAmount = 0f;
+        }
+        
+        if (other.gameObject.CompareTag(HiddenPass))
+        {
+            other.GetComponent<SpriteRenderer>().color = new Color(1,1,1, 1);
+            SpriteRenderer[] spriteRenderers = other.GetComponentsInChildren<SpriteRenderer>();
+            foreach (var spriteRenderer in spriteRenderers)
+            {
+                spriteRenderer.color = new Color(1,1,1, 1);
+            }
         }
     }
 

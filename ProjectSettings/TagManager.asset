@@ -21,6 +21,7 @@ TagManager:
   - TimerButtonStart
   - TimerButtonStop
   - YellowGem
+  - HiddenPass
   layers:
   - Default
   - TransparentFX

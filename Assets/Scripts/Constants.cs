@@ -27,6 +27,9 @@ namespace DefaultNamespace
         public const string Level = "Lvl";
         public const string Coins = "Coins";
         public const string Timer = "Timer";
+        public const string HiddenPass = "HiddenPass";
+        public const string Player = "Player";
+        public const string Ground = "Ground";
         
         //collectibles
         public const string Coin = "Coin";
@@ -55,14 +58,28 @@ namespace DefaultNamespace
 
     public static class Timer
     {
-        private const float LevelWorstTime1 = 10f;
+        private const float LevelWorstTime1 = 100f;
         private const float LevelWorstTime2 = 10f;
         private const float LevelWorstTime3 = 10f;
-        public static Dictionary<int, float> levelsWorstTime = new Dictionary<int, float>()
+        private const float LevelWorstTime4 = 10f;
+        private const float LevelWorstTime5 = 10f;
+        private const float LevelWorstTime6 = 10f;
+        private const float LevelWorstTime7 = 10f;
+        private const float LevelWorstTime8 = 10f;
+        private const float LevelWorstTime9 = 10f;
+        private const float LevelWorstTime10 = 10f;
+        public static readonly Dictionary<int, float> LevelsWorstTime = new Dictionary<int, float>()
         {
             {1, LevelWorstTime1},
             {2, LevelWorstTime2},
             {3, LevelWorstTime3},
+            {4, LevelWorstTime4},
+            {5, LevelWorstTime5},
+            {6, LevelWorstTime6},
+            {7, LevelWorstTime7},
+            {8, LevelWorstTime8},
+            {9, LevelWorstTime9},
+            {10, LevelWorstTime10},
         };
 
         public static string GetTimerString(float timer)

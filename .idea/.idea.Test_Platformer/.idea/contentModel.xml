@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ContentModelStore">
+    <e p="C:\Users\Fill\.Rider2019.3\system\extResources" t="IncludeRecursive" />
+    <e p="C:\Users\Fill\.Rider2019.3\system\resharper-host\local\Transient\ReSharperHost\v193\SolutionCaches\_Test_Platformer.-26488347.00" t="ExcludeRecursive" />
+    <e p="D:\UnityProjects\Test_Platformer" t="IncludeRecursive">
+      <e p="Assembly-CSharp-Editor.csproj" t="IncludeRecursive" />
+      <e p="Assembly-CSharp.csproj" t="IncludeRecursive" />
+      <e p="Assets" t="Include">
+        <e p="Joystick Pack" t="Include">
+          <e p="Examples" t="Include">
+            <e p="JoystickPlayerExample.cs" t="Include" />
+            <e p="JoystickSetterExample.cs" t="Include" />
+          </e>
+          <e p="Scripts" t="Include">
+            <e p="Base" t="Include">
+              <e p="Joystick.cs" t="Include" />
+            </e>
+            <e p="Editor" t="Include">
+              <e p="DynamicJoystickEditor.cs" t="Include" />
+              <e p="FloatingJoystickEditor.cs" t="Include" />
+              <e p="JoystickEditor.cs" t="Include" />
+              <e p="VariableJoystickEditor.cs" t="Include" />
+            </e>
+            <e p="Joysticks" t="Include">
+              <e p="DynamicJoystick.cs" t="Include" />
+              <e p="FixedJoystick.cs" t="Include" />
+              <e p="FloatingJoystick.cs" t="Include" />
+              <e p="VariableJoystick.cs" t="Include" />
+            </e>
+          </e>
+        </e>
+        <e p="platformer-pack-redux-360-assets" t="Include">
+          <e p="License.txt" t="Include" />
+          <e p="Spritesheets" t="Include">
+            <e p="spritesheet_complete.xml" t="Include" />
+            <e p="spritesheet_enemies.xml" t="Include" />
+            <e p="spritesheet_ground.xml" t="Include" />
+            <e p="spritesheet_hud.xml" t="Include" />
+            <e p="spritesheet_items.xml" t="Include" />
+            <e p="spritesheet_players.xml" t="Include" />
+            <e p="spritesheet_tiles.xml" t="Include" />
+          </e>
+        </e>
+        <e p="PlayerHelper.cs" t="Include" />
+        <e p="ReSkinAnimation.cs" t="Include" />
+        <e p="Scripts" t="Include">
+          <e p="AdvancedAirPatrol.cs" t="Include" />
+          <e p="AirPatrole.cs" t="Include" />
+          <e p="BackGround.cs" t="Include" />
+          <e p="Beatle.cs" t="Include" />
+          <e p="Bomber.cs" t="Include" />
+          <e p="Bullet.cs" t="Include" />
+          <e p="Constants.cs" t="Include" />
+          <e p="Destroyable.cs" t="Include" />
+          <e p="Door.cs" t="Include" />
+          <e p="Enemy.cs" t="Include" />
+          <e p="Finish.cs" t="Include" />
+          <e p="FlyingPlatform.cs" t="Include" />
+          <e p="GroundPatrol.cs" t="Include" />
+          <e p="Inventory.cs" t="Include" />
+          <e p="MagicCarpet.cs" t="Include" />
+          <e p="Main.cs" t="Include" />
+          <e p="MainCamera.cs" t="Include" />
+          <e p="Menu.cs" t="Include" />
+          <e p="Player.cs" t="Include" />
+          <e p="SoundEffector.cs" t="Include" />
+          <e p="SwitchButton.cs" t="Include" />
+          <e p="Water.cs" t="Include" />
+        </e>
+        <e p="Sounds" t="Include">
+          <e p="kenney_musicjingles" t="Include">
+            <e p="License.txt" t="Include" />
+          </e>
+          <e p="kenney_uiaudio" t="Include">
+            <e p="License.txt" t="Include" />
+          </e>
+          <e p="kenney_voiceoverfighter" t="Include">
+            <e p="License.txt" t="Include" />
+          </e>
+        </e>
+        <e p="Touches.cs" t="Include" />
+        <e p="UI" t="Include">
+          <e p="gameicons" t="Include">
+            <e p="License.txt" t="Include" />
+            <e p="Spritesheet" t="Include">
+              <e p="sheet_black1x.xml" t="Include" />
+              <e p="sheet_black2x.xml" t="Include" />
+              <e p="sheet_white1x.xml" t="Include" />
+              <e p="sheet_white2x.xml" t="Include" />
+            </e>
+          </e>
+          <e p="kenney_fontpackage" t="Include">
+            <e p="License.txt" t="Include" />
+          </e>
+          <e p="License.txt" t="Include" />
+          <e p="Spritesheet" t="Include">
+            <e p="blueSheet.xml" t="Include" />
+            <e p="greenSheet.xml" t="Include" />
+            <e p="greySheet.xml" t="Include" />
+            <e p="redSheet.xml" t="Include" />
+            <e p="yellowSheet.xml" t="Include" />
+          </e>
+        </e>
+      </e>
+      <e p="obj" t="ExcludeRecursive" />
+      <e p="packages" t="ExcludeRecursive" />
+      <e p="Temp\bin" t="ExcludeRecursive" />
+      <e p="Test_Platformer.sln" t="IncludeFlat" />
+    </e>
+  </component>
+</project>

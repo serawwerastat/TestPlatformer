@@ -59,7 +59,7 @@ namespace DefaultNamespace
     public static class Timer
     {
         private const float LevelWorstTime1 = 100f;
-        private const float LevelWorstTime2 = 10f;
+        private const float LevelWorstTime2 = 125f;
         private const float LevelWorstTime3 = 10f;
         private const float LevelWorstTime4 = 10f;
         private const float LevelWorstTime5 = 10f;

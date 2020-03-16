@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class MainCamera : MonoBehaviour
 {
-    private float speed = 3f;
+    private float speed = 4f;
 
     public Transform target;
 

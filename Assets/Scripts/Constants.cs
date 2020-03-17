@@ -60,7 +60,7 @@ namespace DefaultNamespace
     {
         private const float LevelWorstTime1 = 100f;
         private const float LevelWorstTime2 = 125f;
-        private const float LevelWorstTime3 = 10f;
+        private const float LevelWorstTime3 = 300f;
         private const float LevelWorstTime4 = 10f;
         private const float LevelWorstTime5 = 10f;
         private const float LevelWorstTime6 = 10f;

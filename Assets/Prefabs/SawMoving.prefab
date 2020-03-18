@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 3520360114848997014}
   - component: {fileID: 3284760720800447472}
   - component: {fileID: 4138017431094917880}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: SawMoving
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -158,7 +158,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5065594705249364521}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: SawMoving
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -189,7 +189,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6630496587588768521}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: SawF
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -222,7 +222,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6461131021572191001}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: point1
   m_TagString: Untagged
   m_Icon: {fileID: 4422084297763085224, guid: 0000000000000000d000000000000000, type: 0}
@@ -252,7 +252,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8604830685373797348}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: point2
   m_TagString: Untagged
   m_Icon: {fileID: 4422084297763085224, guid: 0000000000000000d000000000000000, type: 0}

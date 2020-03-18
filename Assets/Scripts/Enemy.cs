@@ -41,7 +41,7 @@ public class Enemy : MonoBehaviour
     if (other.gameObject.CompareTag(Constants.Player) && !other.gameObject.GetComponent<Player>().isImmune)
     {
       other.gameObject.GetComponent<Player>().RecountHP(-1);
-      other.gameObject.GetComponent<Rigidbody2D>().AddForce(transform.up * 8f, ForceMode2D.Impulse);
+      // other.gameObject.GetComponent<Rigidbody2D>().AddForce(transform.up * 8f, ForceMode2D.Impulse);
     }
   }
   

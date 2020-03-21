@@ -10,6 +10,7 @@ public class Player : MonoBehaviour
 {
     [SerializeField]
     private LayerMask platformLayerMask;
+    [SerializeField] private float deathFallHeight = -20f;
     private Rigidbody2D rb;
     public float speed;
     public float jumpHeight;
@@ -76,7 +77,7 @@ public class Player : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if (transform.position.y < -20f)
+        if (transform.position.y < deathFallHeight)
         {
             GetComponent<CapsuleCollider2D>().enabled = false;
             Invoke("Lose", 1.5f);

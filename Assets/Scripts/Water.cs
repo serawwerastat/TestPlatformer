@@ -30,12 +30,12 @@ public class Water : MonoBehaviour
         if (other.gameObject.tag == "Player")
         {
             other.GetComponent<Player>().inWater = true;
-            timerHit += Time.deltaTime;
-            if (timerHit >= 2)
-            {
-                other.gameObject.GetComponent<Player>().RecountHP(-1);
-                timerHit = 0;
-            }
+            // timerHit += Time.deltaTime;
+            // if (timerHit >= 2)
+            // {
+            //     other.gameObject.GetComponent<Player>().RecountHP(-1);
+            //     timerHit = 0;
+            // }
         }
     }
 

@@ -3,6 +3,19 @@ using System.Collections.Generic;
 
 namespace DefaultNamespace
 {
+    /*
+     * Gold amount:
+     * level 1 - 34
+     * level 2 - 37
+     * level 3 - 47
+     * level 4 - 48
+     * level 5 - 65
+     * level 6 - 47
+     * level 7 - ?
+     * level 8 - ?
+     * level 9 - ?
+     * level 10 - ?
+     */
     public static class Constants
     {
         //current skin
@@ -63,7 +76,7 @@ namespace DefaultNamespace
         private const float LevelWorstTime3 = 300f;
         private const float LevelWorstTime4 = 350f;
         private const float LevelWorstTime5 = 425f;
-        private const float LevelWorstTime6 = 10f;
+        private const float LevelWorstTime6 = 440f;
         private const float LevelWorstTime7 = 10f;
         private const float LevelWorstTime8 = 10f;
         private const float LevelWorstTime9 = 10f;

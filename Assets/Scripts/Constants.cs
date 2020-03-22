@@ -11,7 +11,7 @@ namespace DefaultNamespace
      * level 4 - 48
      * level 5 - 65
      * level 6 - 47
-     * level 7 - ?
+     * level 7 - 65
      * level 8 - ?
      * level 9 - ?
      * level 10 - ?
@@ -77,7 +77,7 @@ namespace DefaultNamespace
         private const float LevelWorstTime4 = 350f;
         private const float LevelWorstTime5 = 425f;
         private const float LevelWorstTime6 = 440f;
-        private const float LevelWorstTime7 = 10f;
+        private const float LevelWorstTime7 = 750f;
         private const float LevelWorstTime8 = 10f;
         private const float LevelWorstTime9 = 10f;
         private const float LevelWorstTime10 = 10f;

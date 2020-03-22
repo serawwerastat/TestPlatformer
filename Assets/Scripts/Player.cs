@@ -384,7 +384,7 @@ public class Player : MonoBehaviour
         {
             if (rb.gravityScale == 1f)
             {
-                rb.gravityScale = 7f;
+                rb.gravityScale = 15f;
                 speed *= 0.25f;
             }
         }
@@ -415,7 +415,7 @@ public class Player : MonoBehaviour
 
         if (other.gameObject.CompareTag(Icy))
         {
-            if (rb.gravityScale == 7f)
+            if (rb.gravityScale == 15f)
             {
                 rb.gravityScale = 1f;
                 speed *= 4f;

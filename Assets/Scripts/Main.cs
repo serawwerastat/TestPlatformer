@@ -150,8 +150,6 @@ public class Main : MonoBehaviour
         Time.timeScale = 0f;
         player.enabled = false;
         LoseScreen.SetActive(true);
-        
-        GetComponent<Inventory>().RecountItems();
     }
 
     public void OpenMainMenu()

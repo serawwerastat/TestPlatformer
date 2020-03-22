@@ -92208,11 +92208,6 @@ PrefabInstance:
       propertyPath: deathFallHeight
       value: -40
       objectReference: {fileID: 0}
-    - target: {fileID: 7688558522413258058, guid: 5abf85d49fa853a45945cfdc30d508a3,
-        type: 3}
-      propertyPath: maxHP
-      value: 99
-      objectReference: {fileID: 0}
     - target: {fileID: 7688558522413258063, guid: 5abf85d49fa853a45945cfdc30d508a3,
         type: 3}
       propertyPath: m_LocalPosition.x

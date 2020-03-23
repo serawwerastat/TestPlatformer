@@ -79,7 +79,7 @@ namespace DefaultNamespace
         private const float LevelWorstTime6 = 440f;
         private const float LevelWorstTime7 = 750f;
         private const float LevelWorstTime8 = 225f;
-        private const float LevelWorstTime9 = 10f;
+        private const float LevelWorstTime9 = 90f;
         private const float LevelWorstTime10 = 10f;
         public static readonly Dictionary<int, float> LevelsWorstTime = new Dictionary<int, float>()
         {

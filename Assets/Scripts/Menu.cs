@@ -166,6 +166,7 @@ public class Menu : MonoBehaviour
             levels[levelIndex].transform.GetChild(1).GetComponent<Text>().text = GetTimerString(bestTime);
             levels[levelIndex].transform.GetChild(2).gameObject.SetActive(true);
             SetMedal(levelIndex, bestTime);
+            SetGems(levelIndex);
         }
     }
 
@@ -189,6 +190,22 @@ public class Menu : MonoBehaviour
         }
     }
 
+    private void SetGems(int levelIndex)
+    {
+        var levelNumber = levelIndex + 1;
+        if (PlayerPrefs.HasKey(GemBlue + levelNumber) && PlayerPrefs.GetInt(GemBlue + levelNumber) == 1)
+        {
+            levels[levelIndex].transform.GetChild(4).transform.GetChild(0).gameObject.SetActive(true);
+        }
+        if (PlayerPrefs.HasKey(GemGreen + levelNumber) && PlayerPrefs.GetInt(GemGreen + levelNumber) == 1)
+        {
+            levels[levelIndex].transform.GetChild(4).transform.GetChild(1).gameObject.SetActive(true);
+        }
+        if (PlayerPrefs.HasKey(GemYellow + levelNumber) && PlayerPrefs.GetInt(GemYellow + levelNumber) == 1)
+        {
+            levels[levelIndex].transform.GetChild(4).transform.GetChild(2).gameObject.SetActive(true);
+        }
+    }
     private void Update()
     {
         PlayerPrefs.SetInt(MusicVolume, (int) musicSlided.value);

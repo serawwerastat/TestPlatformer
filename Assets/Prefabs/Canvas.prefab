@@ -1247,7 +1247,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Bonus 100 coins
+  m_Text: Bonus 500 coins
 --- !u!1 &7563862114004031998
 GameObject:
   m_ObjectHideFlags: 0

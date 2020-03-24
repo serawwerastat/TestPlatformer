@@ -12,9 +12,9 @@ namespace DefaultNamespace
      * level 5 - 65
      * level 6 - 47
      * level 7 - 65
-     * level 8 - ?
-     * level 9 - ?
-     * level 10 - ?
+     * level 8 - 68
+     * level 9 - 160
+     * level 10 - 153
      */
     public static class Constants
     {
@@ -80,7 +80,7 @@ namespace DefaultNamespace
         private const float LevelWorstTime7 = 750f;
         private const float LevelWorstTime8 = 225f;
         private const float LevelWorstTime9 = 90f;
-        private const float LevelWorstTime10 = 10f;
+        private const float LevelWorstTime10 = 525f;
         public static readonly Dictionary<int, float> LevelsWorstTime = new Dictionary<int, float>()
         {
             {1, LevelWorstTime1},

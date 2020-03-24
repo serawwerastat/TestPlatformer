@@ -112,7 +112,7 @@ public class Main : MonoBehaviour
         if (GetComponent<Inventory>().AreAllGemsCollected())
         {
             BonusPanel.SetActive(true);
-            bonusReward = 100;
+            bonusReward = 500;
         }
         if (PlayerPrefs.HasKey(Coins))
         {

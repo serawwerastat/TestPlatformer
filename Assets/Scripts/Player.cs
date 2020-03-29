@@ -8,14 +8,9 @@ using static DefaultNamespace.Constants;
 
 public class Player : MonoBehaviour
 {
-    [SerializeField]
-    private LayerMask platformLayerMask;
     [SerializeField] private float deathFallHeight = -20f;
     private Rigidbody2D rb;
     public float speed;
-    public float jumpHeight;
-    // public Transform groundCheck;
-    private bool _isGrounded;
     private int _currentHp;
     public int maxHP = 3;
     private bool _isHit;
@@ -23,8 +18,6 @@ public class Player : MonoBehaviour
     public Main main;
     public bool key = false;
     public bool canTP = true;
-    public bool inWater = false;
-    private bool _isClimbing = false;
     private int _coins = 0;
     public GameObject blueGem, greenGem;
     private int _gemCount = 0;
@@ -35,31 +28,16 @@ public class Player : MonoBehaviour
     public Image healthCountdown;
     public Inventory inventory;
     public SoundEffector soundEffector;
-    private CapsuleCollider2D _capsuleCollider2D;
-    private PlayerHelper _playerHelper;
     public Joystick joystick;
     
-
-    private void Awake()
-    {
-        _capsuleCollider2D = transform.GetComponent<CapsuleCollider2D>();
-    }
-
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        _playerHelper = GetComponent<PlayerHelper>();
         _currentHp = maxHP;
     }
     
     void Update()
     {
-        //key control
-        if (Input.GetKeyDown(KeyCode.Space) && IsGrounded())
-        {
-            Jump();
-        }
-
         if (_healthCountdownTimer >= 0f)
         {
             _healthCountdownTimer += Time.deltaTime;
@@ -82,125 +60,8 @@ public class Player : MonoBehaviour
             GetComponent<CapsuleCollider2D>().enabled = false;
             Invoke("Lose", 1.5f);
         }
-        if (inWater && !_isClimbing)
-        {
-            _playerHelper.PlaySwimmingAnimation();
-            // _isGrounded = true;
-            //joystick control
-            // if (joystick.Horizontal >= 0.2f || joystick.Horizontal >= -0.2f)
-            // {
-            //     Flip();
-            // }
-
-            //key control
-            if (Input.GetAxis("Horizontal") != 0)
-            {
-                Flip();
-            }
-        }
-        else
-        {
-            IsGrounded();
-            //joystick control
-            // if (joystick.Horizontal < 0.2f && joystick.Horizontal > -0.2f && _isGrounded && !_isClimbing)
-            // {
-            //     _playerHelper.PlayStandingAnimation();
-            // }
-            //key control
-            if (Input.GetAxis("Horizontal") == 0 && IsGrounded() && !_isClimbing)
-            {
-                _playerHelper.PlayStandingAnimation();
-            }
-            else
-            {
-                Flip();
-                if (IsGrounded() && !_isClimbing)
-                {
-                    _playerHelper.PlayWalkAnimation();
-                }
-            }
-        }
-        //joystick control
-        // if (joystick.Horizontal >= 0.2f)
-        // {
-        //     print("right");
-        //     rb.velocity = new Vector2(speed, rb.velocity.y);
-        // }
-        // else if (joystick.Horizontal <= -0.2f)
-        // {
-        //     print("left");
-        //     rb.velocity = new Vector2(-speed, rb.velocity.y);
-        // }
-        // else
-        // {
-        //     print("none");
-        //     rb.velocity = new Vector2(0, rb.velocity.y);
-        // }
-        //key control
-        rb.velocity = new Vector2(Input.GetAxis("Horizontal") * speed, rb.velocity.y);
-
     }
     
-    private bool IsGrounded()
-    {
-        float extraHeightText = 0.5f;
-        RaycastHit2D raycastHit = Physics2D.CapsuleCast(_capsuleCollider2D.bounds.center,
-            _capsuleCollider2D.bounds.size, CapsuleDirection2D.Vertical ,0f, 
-            Vector2.down, extraHeightText, platformLayerMask);
-        _isGrounded = raycastHit.collider != null;
-        return _isGrounded;
-    }
-
-    public void Jump()
-    {
-        if (IsGrounded() && !_isClimbing)
-        {
-            // rb.AddForce(transform.up * jumpHeight, ForceMode2D.Impulse);
-            // _anim.SetInteger("State", 3);
-            _playerHelper.PlayJumpAnimation();
-            // rb.velocity = Vector2.up * jumpHeight; 
-            rb.AddForce(transform.up * jumpHeight, ForceMode2D.Impulse);
-            soundEffector.PlayJumpSound();
-        }
-    }
-
-    void Flip()
-    {
-        Quaternion lookRight = Quaternion.Euler(0, 0, 0);
-        Quaternion lookLeft = Quaternion.Euler(0, 180, 0);
-        //joystick control
-        // if (joystick.Horizontal >= 0.2f)
-        // {
-        //     transform.localRotation = lookRight;
-        // }
-        //
-        // if (joystick.Horizontal <= -0.2f)
-        // {
-        //     transform.localRotation = lookLeft;
-        // }
-
-        //key control
-        if (Input.GetAxis("Horizontal") > 0)
-        {
-            transform.localRotation = lookRight;
-        }
-        
-        if (Input.GetAxis("Horizontal") < 0)
-        {
-            transform.localRotation = lookLeft;
-        }
-    }
-
-    // void CheckGround()
-    // {
-    //     Collider2D[] colliders = Physics2D.OverlapCircleAll(groundCheck.position, 0.2f);
-    //     _isGrounded = colliders.Length > 1;
-    //     if (!_isGrounded && !_isClimbing)
-    //     {
-    //         _anim.SetInteger("State", 3);
-    //     }
-    // }
-
     public void RecountHP(int deltaHP)
     {
         if (deltaHP < 0 && !isImmune)
@@ -250,11 +111,7 @@ public class Player : MonoBehaviour
 
         if (Math.Abs(GetComponent<SpriteRenderer>().color.g - 1) < 0.01f)
         {
-            if (!blueGem.active)
-            {
-                isImmune = false;
-            }
-
+            isImmune = false;
             StopCoroutine(OnHit());
         }
 
@@ -365,21 +222,6 @@ public class Player : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D other)
     {
-        if (other.gameObject.CompareTag(Ladder))
-        {
-            _isClimbing = true;
-            rb.bodyType = RigidbodyType2D.Kinematic;
-            if (Input.GetAxis("Vertical") == 0)
-            {
-                _playerHelper.PlayLadderIdleAnimation();
-            }
-            else
-            {
-                _playerHelper.PlayLadderClimingAnimation();
-                transform.Translate(Vector3.up * Input.GetAxis("Vertical") * speed * 0.5f * Time.deltaTime);
-            }
-        }
-
         if (other.gameObject.CompareTag(Icy))
         {
             if (rb.gravityScale == 1f)
@@ -407,12 +249,7 @@ public class Player : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D other)
     {
-        if (other.gameObject.CompareTag(Ladder))
-        {
-            _isClimbing = false;
-            rb.bodyType = RigidbodyType2D.Dynamic;
-        }
-
+        
         if (other.gameObject.CompareTag(Icy))
         {
             if (rb.gravityScale == 15f)
@@ -474,63 +311,7 @@ public class Player : MonoBehaviour
         yield return new WaitForSeconds(1f);
         canTP = true;
     }
-
-    IEnumerator NoHit()
-    {
-        _gemCount++;
-        blueGem.SetActive(true);
-        checkGems(blueGem);
-        isImmune = true;
-        blueGem.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1);
-        yield return new WaitForSeconds(4f);
-        StartCoroutine(Fading(blueGem.GetComponent<SpriteRenderer>(), 0.02f));
-        yield return new WaitForSeconds(1f);
-        isImmune = false;
-        _gemCount--;
-        blueGem.SetActive(false);
-        checkGems(greenGem);
-    }
-
-    IEnumerator SpeedBonus()
-    {
-        _gemCount++;
-        greenGem.SetActive(true);
-        checkGems(greenGem);
-        speed = speed * 2;
-        greenGem.GetComponent<SpriteRenderer>().color = new Color(1, 1, 1, 1);
-        yield return new WaitForSeconds(9f);
-        StartCoroutine(Fading(greenGem.GetComponent<SpriteRenderer>(), 0.02f));
-        yield return new WaitForSeconds(5f);
-        speed = speed / 2;
-        _gemCount--;
-        greenGem.SetActive(false);
-        checkGems(blueGem);
-    }
-
-    void checkGems(GameObject gem)
-    {
-        if (_gemCount == 1)
-        {
-            gem.transform.localPosition = new Vector3(0f, 0.6f, gem.transform.localPosition.z);
-        }
-
-        else
-        {
-            blueGem.transform.localPosition = new Vector3(-0.5f, 0.5f, gem.transform.localPosition.z);
-            greenGem.transform.localPosition = new Vector3(0.5f, 0.5f, gem.transform.localPosition.z);
-        }
-    }
-
-    IEnumerator Fading(SpriteRenderer spr, float time)
-    {
-        spr.color = new Color(1, 1, 1, spr.color.a - time * 2);
-        yield return new WaitForSeconds(time);
-        if (spr.color.a > 0)
-        {
-            StartCoroutine(Fading(spr, time));
-        }
-    }
-
+    
     public int GetCoins()
     {
         return _coins;
@@ -541,15 +322,4 @@ public class Player : MonoBehaviour
         return _currentHp;
     }
 
-    public void BlueGem()
-    {
-        StartCoroutine(NoHit());
-        soundEffector.PlayPowerUpSound();
-    }
-
-    public void GreenGem()
-    {
-        StartCoroutine(SpeedBonus());
-        soundEffector.PlayPowerUpSound();
-    }
 }

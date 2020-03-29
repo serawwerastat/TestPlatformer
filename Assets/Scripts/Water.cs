@@ -29,7 +29,9 @@ public class Water : MonoBehaviour
     {
         if (other.gameObject.tag == "Player")
         {
-            other.GetComponent<Player>().inWater = true;
+            other.GetComponent<PlayerKeyControl>().inWater = true;
+            
+            other.GetComponent<PlayerJoyStickControl>().inWater = true;
             // timerHit += Time.deltaTime;
             // if (timerHit >= 2)
             // {
@@ -43,7 +45,9 @@ public class Water : MonoBehaviour
     {
         if (other.gameObject.tag == "Player")
         {
-            other.GetComponent<Player>().inWater = false;
+            other.GetComponent<PlayerKeyControl>().inWater = false;
+            other.GetComponent<PlayerJoyStickControl>().inWater = false;
+
             timerHit = 0;
         }
     }

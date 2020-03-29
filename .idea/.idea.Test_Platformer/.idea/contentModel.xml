@@ -42,8 +42,6 @@
             <e p="spritesheet_tiles.xml" t="Include" />
           </e>
         </e>
-        <e p="PlayerHelper.cs" t="Include" />
-        <e p="ReSkinAnimation.cs" t="Include" />
         <e p="Scripts" t="Include">
           <e p="AdvancedAirPatrol.cs" t="Include" />
           <e p="AirPatrole.cs" t="Include" />
@@ -64,8 +62,13 @@
           <e p="MainCamera.cs" t="Include" />
           <e p="Menu.cs" t="Include" />
           <e p="Player.cs" t="Include" />
+          <e p="PlayerHelper.cs" t="Include" />
+          <e p="PlayerJoyStickControl.cs" t="Include" />
+          <e p="PlayerKeyControl.cs" t="Include" />
+          <e p="ReSkinAnimation.cs" t="Include" />
           <e p="SoundEffector.cs" t="Include" />
           <e p="SwitchButton.cs" t="Include" />
+          <e p="Touches.cs" t="Include" />
           <e p="Water.cs" t="Include" />
         </e>
         <e p="Sounds" t="Include">
@@ -79,7 +82,6 @@
             <e p="License.txt" t="Include" />
           </e>
         </e>
-        <e p="Touches.cs" t="Include" />
         <e p="UI" t="Include">
           <e p="gameicons" t="Include">
             <e p="License.txt" t="Include" />

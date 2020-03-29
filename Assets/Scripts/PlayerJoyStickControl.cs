@@ -11,7 +11,7 @@ public class PlayerJoyStickControl : MonoBehaviour
     private LayerMask platformLayerMask;
     private Rigidbody2D playerRigidbody2D;
     private PlayerHelper _playerHelper;
-    public float speed = 7;
+    public float speed = 7f;
     public bool inWater = false;
     private bool _isClimbing = false;
     private bool _isGrounded;
@@ -67,11 +67,11 @@ public class PlayerJoyStickControl : MonoBehaviour
                 }
             }
         }
-        if (joystick.Horizontal >= 0.2f)
+        if (joystick.Horizontal >= 0.1f)
         {
-            playerRigidbody2D.velocity = new Vector2(speed, playerRigidbody2D.velocity.y);
+            playerRigidbody2D.velocity = new Vector2( speed, playerRigidbody2D.velocity.y);
         }
-        else if (joystick.Horizontal <= -0.2f)
+        else if (joystick.Horizontal <= -0.1f)
         {
             playerRigidbody2D.velocity = new Vector2(-speed, playerRigidbody2D.velocity.y);
         }
@@ -83,7 +83,7 @@ public class PlayerJoyStickControl : MonoBehaviour
     
     private bool IsGrounded()
     {
-        float extraHeightText = 0.5f;
+        float extraHeightText = 0.8f;
         RaycastHit2D raycastHit = Physics2D.CapsuleCast(_capsuleCollider2D.bounds.center,
             _capsuleCollider2D.bounds.size, CapsuleDirection2D.Vertical ,0f, 
             Vector2.down, extraHeightText, platformLayerMask);

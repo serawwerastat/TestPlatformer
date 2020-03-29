@@ -180,7 +180,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7688558522413258065}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: df1ea9ce716e67d4ebc89c0eb3cf19ab, type: 3}
   m_Name: 
@@ -209,7 +209,6 @@ MonoBehaviour:
   speed: 7
   inWater: 0
   jumpHeight: 12
-  joystick: {fileID: 0}
 --- !u!1 &7688558522681021341
 GameObject:
   m_ObjectHideFlags: 0

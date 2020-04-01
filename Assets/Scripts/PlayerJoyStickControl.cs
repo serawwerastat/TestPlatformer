@@ -43,6 +43,8 @@ public class PlayerJoyStickControl : MonoBehaviour
 
     private void FixedUpdate()
     {
+        speed = transform.GetComponent<Player>().speed;
+
         if (inWater && !_isClimbing)
         {
             _playerHelper.PlaySwimmingAnimation();
@@ -83,7 +85,7 @@ public class PlayerJoyStickControl : MonoBehaviour
     
     private bool IsGrounded()
     {
-        float extraHeightText = 0.8f;
+        float extraHeightText = 0.2f;
         RaycastHit2D raycastHit = Physics2D.CapsuleCast(_capsuleCollider2D.bounds.center,
             _capsuleCollider2D.bounds.size, CapsuleDirection2D.Vertical ,0f, 
             Vector2.down, extraHeightText, platformLayerMask);

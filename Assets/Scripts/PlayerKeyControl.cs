@@ -22,6 +22,7 @@ public class PlayerKeyControl : MonoBehaviour
     private void Awake()
     {
         _capsuleCollider2D = transform.GetComponent<CapsuleCollider2D>();
+        
     }
     
     void Start()
@@ -41,6 +42,8 @@ public class PlayerKeyControl : MonoBehaviour
 
     private void FixedUpdate()
     {
+        speed = transform.GetComponent<Player>().speed;
+        
         if (inWater && !_isClimbing)
         {
             _playerHelper.PlaySwimmingAnimation();
@@ -70,7 +73,7 @@ public class PlayerKeyControl : MonoBehaviour
     
     private bool IsGrounded()
     {
-        float extraHeightText = 0.5f;
+        float extraHeightText = 0.2f;
         RaycastHit2D raycastHit = Physics2D.CapsuleCast(_capsuleCollider2D.bounds.center,
             _capsuleCollider2D.bounds.size, CapsuleDirection2D.Vertical ,0f, 
             Vector2.down, extraHeightText, platformLayerMask);

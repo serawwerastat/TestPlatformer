@@ -35,6 +35,10 @@ public class PlayerJoyStickControl : MonoBehaviour
 
     void Update()
     {
+        if (playerRigidbody2D.velocity.y > jumpHeight)
+        {
+            playerRigidbody2D.velocity = new Vector2(playerRigidbody2D.velocity.x, jumpHeight/2f);
+        }
         if (Input.GetKeyDown(KeyCode.Space) && IsGrounded())
         {
             Jump();

@@ -93,8 +93,6 @@ public class Player : MonoBehaviour
 
     IEnumerator OnHit()
     {
-
-        Debug.Log("START HIT");
         float changeColorSpeed = 0.04f;
         if (_isHit)
         {
@@ -113,8 +111,6 @@ public class Player : MonoBehaviour
 
         if (GetComponent<SpriteRenderer>().color.g >= 0.99f)
         {
-            Debug.Log("END HIT");
-            // isImmune = false;
             StopCoroutine(OnHit());
         }
 

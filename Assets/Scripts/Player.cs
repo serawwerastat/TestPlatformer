@@ -13,8 +13,8 @@ public class Player : MonoBehaviour
     public float speed;
     private int _currentHp;
     public int maxHP = 3;
-    private bool _isHit;
-    public bool isImmune = false;
+    private volatile bool _isHit = false;
+    private volatile bool isImmune = false;
     public Main main;
     public bool key = false;
     public bool canTP = true;
@@ -61,15 +61,15 @@ public class Player : MonoBehaviour
             Invoke("Lose", 1.5f);
         }
     }
+
     
     public void RecountHP(int deltaHP)
     {
-        if (deltaHP < 0 && !isImmune)
+        if (deltaHP < 0)
         {
             soundEffector.PlayHitSound();
             _currentHp += deltaHP;
-            // StopCoroutine(OnHit());
-            isImmune = true;
+            StopCoroutine(OnHit());
             _isHit = true;
             StartCoroutine(OnHit());
         }
@@ -93,6 +93,8 @@ public class Player : MonoBehaviour
 
     IEnumerator OnHit()
     {
+
+        Debug.Log("START HIT");
         float changeColorSpeed = 0.04f;
         if (_isHit)
         {
@@ -109,18 +111,19 @@ public class Player : MonoBehaviour
                     GetComponent<SpriteRenderer>().color.b + changeColorSpeed);
         }
 
-        if (Math.Abs(GetComponent<SpriteRenderer>().color.g - 1) < 0.01f)
+        if (GetComponent<SpriteRenderer>().color.g >= 0.99f)
         {
-            isImmune = false;
+            Debug.Log("END HIT");
+            // isImmune = false;
             StopCoroutine(OnHit());
         }
 
-        if (Math.Abs(GetComponent<SpriteRenderer>().color.g) < 0.01f)
+        if (GetComponent<SpriteRenderer>().color.g <= 0.01f)
         {
             _isHit = false;
         }
 
-        yield return new WaitForSeconds(0.04f);
+        yield return new WaitForSeconds(changeColorSpeed);
         StartCoroutine(OnHit());
     }
 
@@ -322,4 +325,22 @@ public class Player : MonoBehaviour
         return _currentHp;
     }
 
+    public bool getImmune()
+    {
+        return isImmune;
+    }
+
+    public void ImmuneOn()
+    {
+        isImmune = true;
+    }
+
+    public void ImmuneOff()
+    {
+        Invoke(nameof(setImmuneFalse), 2);
+    }
+    void setImmuneFalse()
+    {
+        isImmune = false;
+    }
 }

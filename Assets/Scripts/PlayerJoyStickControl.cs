@@ -85,10 +85,11 @@ public class PlayerJoyStickControl : MonoBehaviour
     
     private bool IsGrounded()
     {
-        float extraHeightText = 0.2f;
-        RaycastHit2D raycastHit = Physics2D.CapsuleCast(_capsuleCollider2D.bounds.center,
-            _capsuleCollider2D.bounds.size, CapsuleDirection2D.Vertical ,0f, 
-            Vector2.down, extraHeightText, platformLayerMask);
+        float extraHeightText = 0.01f;
+        Vector2 origin = new Vector2(_capsuleCollider2D.bounds.center.x, _capsuleCollider2D.bounds.center.y-0.5f);
+        Vector2 size = new Vector2(_capsuleCollider2D.bounds.size.x*0.8f, _capsuleCollider2D.bounds.size.y);
+        RaycastHit2D raycastHit = Physics2D.CapsuleCast(origin, size, CapsuleDirection2D.Vertical,
+            0f, Vector2.down, extraHeightText, platformLayerMask);
         _isGrounded = raycastHit.collider != null;
         return _isGrounded;
     }

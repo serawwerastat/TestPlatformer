@@ -38,11 +38,13 @@ public class Enemy : MonoBehaviour
 
   void doDamage(Collision2D other)
   {
-    if (other.gameObject.CompareTag(Constants.Player) && !other.gameObject.GetComponent<Player>().isImmune)
+    if (other.gameObject.CompareTag(Constants.Player) 
+        && !other.gameObject.GetComponent<Player>().getImmune())
     {
-      other.gameObject.GetComponent<Player>().RecountHP(-1);
-      // other.gameObject.GetComponent<Rigidbody2D>().AddForce(transform.up * 8f, ForceMode2D.Impulse);
+      other.gameObject.GetComponent<Player>().ImmuneOn();
+        other.gameObject.GetComponent<Player>().RecountHP(-1);
+        other.gameObject.GetComponent<Player>().ImmuneOff();
+        // other.gameObject.GetComponent<Rigidbody2D>().AddForce(transform.up * 8f, ForceMode2D.Impulse);
     }
   }
-  
 }

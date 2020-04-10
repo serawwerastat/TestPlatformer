@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using DefaultNamespace;
 using UnityEngine;
 
 public class MagicCarpet : MonoBehaviour
@@ -12,14 +13,14 @@ public class MagicCarpet : MonoBehaviour
     // Start is called before the first frame update
     private void OnTriggerStay2D(Collider2D other)
     {
-        if (other.gameObject.tag == "Player")
+        if (other.gameObject.CompareTag(Constants.Player))
         {
             RaycastHit2D leftWall = Physics2D.Raycast(left.position, Vector2.left, 0.5f);
             RaycastHit2D rightWall = Physics2D.Raycast(right.position, Vector2.right, 0.5f);
-            if ((Input.GetAxis("Horizontal") > 0
+            if (((Input.GetAxis("Horizontal") > 0 || other.GetComponent<Player>().joystick.Horizontal >= 0.15f)
                  && !rightWall.collider
                  && other.transform.position.x > transform.position.x)
-                || (Input.GetAxis("Horizontal") < 0
+                || (Input.GetAxis("Horizontal") < 0 || other.GetComponent<Player>().joystick.Horizontal <= 0.15f
                     && !leftWall.collider
                     && other.transform.position.x < transform.position.x))
             {

@@ -12,16 +12,16 @@ public class Player : MonoBehaviour
     private Rigidbody2D rb;
     public float speed;
     private int _currentHp;
-    public int maxHP = 3;
-    private volatile bool _isHit = false;
-    private volatile bool isImmune = false;
+    public int maxHp = 3;
+    private volatile bool _isHit;
+    private volatile bool isImmune;
     public Main main;
-    public bool key = false;
-    public bool canTP = true;
-    private int _coins = 0;
+    public bool key;
+    public bool canTp = true;
+    private int _coins;
     public GameObject blueGem, greenGem;
-    private int _gemCount = 0;
-    private float _hitTimer = 0f;
+    private int _gemCount;
+    private float _hitTimer;
     public Image playerCountDown;
     private float _healthCountdownTimer = -1f;
     public float healthCountdownTimerUp = 30f;
@@ -29,11 +29,12 @@ public class Player : MonoBehaviour
     public Inventory inventory;
     public SoundEffector soundEffector;
     public Joystick joystick;
-    
+    private static readonly int IsJump = Animator.StringToHash("isJump");
+
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        _currentHp = maxHP;
+        _currentHp = maxHp;
     }
     
     void Update()
@@ -44,7 +45,7 @@ public class Player : MonoBehaviour
             if (_healthCountdownTimer >= healthCountdownTimerUp)
             {
                 _healthCountdownTimer = 0f;
-                RecountHP(-1);
+                RecountHp(-1);
             }
             else
             {
@@ -63,25 +64,25 @@ public class Player : MonoBehaviour
     }
 
     
-    public void RecountHP(int deltaHP)
+    public void RecountHp(int deltaHp)
     {
-        if (deltaHP < 0)
+        if (deltaHp < 0)
         {
             soundEffector.PlayHitSound();
-            _currentHp += deltaHP;
+            _currentHp += deltaHp;
             StopCoroutine(OnHit());
             _isHit = true;
             StartCoroutine(OnHit());
         }
-        else if (deltaHP > 0)
+        else if (deltaHp > 0)
         {
             soundEffector.PlayPowerUpSound();
-            _currentHp += deltaHP;
+            _currentHp += deltaHp;
         }
 
-        if (_currentHp > maxHP)
+        if (_currentHp > maxHp)
         {
-            _currentHp = maxHP;
+            _currentHp = maxHp;
         }
 
         if (_currentHp <= 0)
@@ -91,7 +92,7 @@ public class Player : MonoBehaviour
         }
     }
 
-    IEnumerator OnHit()
+    private IEnumerator OnHit()
     {
         float changeColorSpeed = 0.04f;
         if (_isHit)
@@ -140,11 +141,11 @@ public class Player : MonoBehaviour
 
         if (other.gameObject.CompareTag(Constants.Door))
         {
-            if (other.gameObject.GetComponent<Door>().isOpen && canTP)
+            if (other.gameObject.GetComponent<Door>().isOpen && canTp)
             {
-                canTP = false;
+                canTp = false;
                 other.gameObject.GetComponent<Door>().Teleport(gameObject);
-                StartCoroutine(TPWait());
+                StartCoroutine(TeleportWait());
             }
             else if (key)
             {
@@ -161,10 +162,10 @@ public class Player : MonoBehaviour
 
         if (other.gameObject.CompareTag(Heart))
         {
-            if (_currentHp != maxHP)
+            if (_currentHp != maxHp)
             {
             Destroy(other.gameObject);
-            RecountHP(1);
+            RecountHp(1);
             soundEffector.PlayGemSound();
             }
         }
@@ -172,7 +173,7 @@ public class Player : MonoBehaviour
         if (other.gameObject.CompareTag(Mushroom))
         {
             Destroy(other.gameObject);
-            RecountHP(-1);
+            RecountHp(-1);
             soundEffector.PlayHitSound();
         }
 
@@ -237,7 +238,7 @@ public class Player : MonoBehaviour
             {
                 _hitTimer = 0;
                 playerCountDown.fillAmount = 1;
-                RecountHP(-1);
+                RecountHp(-1);
             }
             else
             {
@@ -300,15 +301,15 @@ public class Player : MonoBehaviour
 
     IEnumerator TrampolineAnim(Animator animator)
     {
-        animator.SetBool("isJump", true);
+        animator.SetBool(IsJump, true);
         yield return new WaitForSeconds(0.5f);
-        animator.SetBool("isJump", false);
+        animator.SetBool(IsJump, false);
     }
 
-    IEnumerator TPWait()
+    IEnumerator TeleportWait()
     {
         yield return new WaitForSeconds(1f);
-        canTP = true;
+        canTp = true;
     }
     
     public int GetCoins()
@@ -316,12 +317,12 @@ public class Player : MonoBehaviour
         return _coins;
     }
 
-    public int GetHP()
+    public int GetHp()
     {
         return _currentHp;
     }
 
-    public bool getImmune()
+    public bool GetImmune()
     {
         return isImmune;
     }
@@ -333,9 +334,9 @@ public class Player : MonoBehaviour
 
     public void ImmuneOff()
     {
-        Invoke(nameof(setImmuneFalse), 2);
+        Invoke(nameof(SetImmuneFalse), 2);
     }
-    void setImmuneFalse()
+    void SetImmuneFalse()
     {
         isImmune = false;
     }

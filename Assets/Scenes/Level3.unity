@@ -63789,6 +63789,16 @@ PrefabInstance:
       propertyPath: newRecordPanel
       value: 
       objectReference: {fileID: 346595134}
+    - target: {fileID: 2894199560191374465, guid: 81e9c3a7b3b5e174aaa5360ca632d5f2,
+        type: 3}
+      propertyPath: loseScreen
+      value: 
+      objectReference: {fileID: 917370180}
+    - target: {fileID: 2894199560191374465, guid: 81e9c3a7b3b5e174aaa5360ca632d5f2,
+        type: 3}
+      propertyPath: bonusPanel
+      value: 
+      objectReference: {fileID: 7563862114782619790}
     - target: {fileID: 2894199560191374466, guid: 81e9c3a7b3b5e174aaa5360ca632d5f2,
         type: 3}
       propertyPath: numbers.Array.size

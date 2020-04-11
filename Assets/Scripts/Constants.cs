@@ -43,6 +43,7 @@ namespace DefaultNamespace
         public const string HiddenPass = "HiddenPass";
         public const string Player = "Player";
         public const string Ground = "Ground";
+        public const string KeyBox = "KeyBox";
         
         //collectibles
         public const string Coin = "Coin";

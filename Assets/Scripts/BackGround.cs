@@ -19,10 +19,13 @@ public class BackGround : MonoBehaviour
     // Update is called once per frame
     void FixedUpdate()
     {
-        float temp = camera.transform.position.x * (1 - parallaxEffect);
-        float dist = camera.transform.position.x * parallaxEffect;
-        
-        transform.position = new Vector3(startPos + dist, transform.position.y, transform.position.z);
+        var cameraPosition = camera.transform.position;
+        float temp = cameraPosition.x * (1 - parallaxEffect);
+        float dist = cameraPosition.x * parallaxEffect;
+
+        var position = transform.position;
+        position = new Vector3(startPos + dist, position.y, position.z);
+        transform.position = position;
 
         if (temp > startPos + length)
         {

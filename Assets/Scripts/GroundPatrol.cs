@@ -11,16 +11,9 @@ public class GroundPatrol : MonoBehaviour
     public bool moveLeft = true;
     public Transform groundDetect;
     
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
     void Update()
     {
-        transform.Translate(Vector2.left * speed * Time.deltaTime);
+        transform.Translate(Vector2.left * (speed * Time.deltaTime));
         RaycastHit2D groundInfo = Physics2D.Raycast(groundDetect.position, Vector2.down, 0.5f, platformLayerMask);
 
         if (groundInfo.collider == true && groundInfo.collider.gameObject.CompareTag(Ground))
@@ -29,7 +22,7 @@ public class GroundPatrol : MonoBehaviour
         }
         else            
         {
-            if (moveLeft == true)
+            if (moveLeft)
             {
                 transform.eulerAngles = new Vector3(0, 180, 0);
                 moveLeft = false;

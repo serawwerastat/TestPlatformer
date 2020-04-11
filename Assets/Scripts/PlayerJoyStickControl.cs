@@ -7,13 +7,15 @@ using static DefaultNamespace.Constants;
 
 public class PlayerJoyStickControl : MonoBehaviour
 {
+    private static readonly int IsJump = Animator.StringToHash("isJump");
+    
     [SerializeField]
     private LayerMask platformLayerMask;
     private Rigidbody2D playerRigidbody2D;
     private PlayerHelper _playerHelper;
     public float speed = 7f;
-    public bool inWater = false;
-    private bool _isClimbing = false;
+    public bool inWater;
+    private bool _isClimbing;
     private bool _isGrounded;
     private CapsuleCollider2D _capsuleCollider2D;
     private SoundEffector soundEffector;
@@ -90,8 +92,9 @@ public class PlayerJoyStickControl : MonoBehaviour
     private bool IsGrounded()
     {
         float extraHeightText = 0.01f;
-        Vector2 origin = new Vector2(_capsuleCollider2D.bounds.center.x, _capsuleCollider2D.bounds.center.y-0.5f);
-        Vector2 size = new Vector2(_capsuleCollider2D.bounds.size.x*0.8f, _capsuleCollider2D.bounds.size.y);
+        var bounds = _capsuleCollider2D.bounds;
+        Vector2 origin = new Vector2(bounds.center.x, bounds.center.y-0.5f);
+        Vector2 size = new Vector2(bounds.size.x*0.8f, bounds.size.y);
         RaycastHit2D raycastHit = Physics2D.CapsuleCast(origin, size, CapsuleDirection2D.Vertical,
             0f, Vector2.down, extraHeightText, platformLayerMask);
         _isGrounded = raycastHit.collider != null;
@@ -122,6 +125,15 @@ public class PlayerJoyStickControl : MonoBehaviour
         }
     }
 
+    private void OnCollisionEnter2D(Collision2D other)
+    {
+        if (other.gameObject.CompareTag(Trampoline))
+        {
+            jumpHeight *= 3;
+            StartCoroutine(TrampolineAnim(other.gameObject.GetComponentInParent<Animator>()));
+        }
+    }
+
     private void OnTriggerStay2D(Collider2D other)
     {
         if (other.gameObject.CompareTag(Ladder))
@@ -147,5 +159,13 @@ public class PlayerJoyStickControl : MonoBehaviour
             _isClimbing = false;
             playerRigidbody2D.bodyType = RigidbodyType2D.Dynamic;
         }
+    }
+    
+    IEnumerator TrampolineAnim(Animator animator)
+    {
+        animator.SetBool(IsJump, true);
+        yield return new WaitForSeconds(0.5f);
+        animator.SetBool(IsJump, false);
+        jumpHeight /= 3;
     }
 }

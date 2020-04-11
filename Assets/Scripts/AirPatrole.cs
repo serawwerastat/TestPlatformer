@@ -12,18 +12,19 @@ public class AirPatrole : MonoBehaviour
 
     public float waitTime = 1f;
 
-    private bool CanGo = true;
+    private bool _canGo = true;
 
     // Start is called before the first frame update
     void Start()
     {
-        gameObject.transform.position = new Vector3(point1.position.x, point1.position.y, transform.position.z);
+        var position = point1.position;
+        gameObject.transform.position = new Vector3(position.x, position.y, transform.position.z);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (CanGo)
+        if (_canGo)
         {
             transform.position =
                 Vector3.MoveTowards(transform.position,
@@ -35,7 +36,7 @@ public class AirPatrole : MonoBehaviour
                 Transform t = point1;
                 point1 = point2;
                 point2 = t;
-                CanGo = false;
+                _canGo = false;
                 StartCoroutine(Waiting());
             }
         }
@@ -53,6 +54,6 @@ public class AirPatrole : MonoBehaviour
             transform.eulerAngles = new Vector3(0, 0, 0);
         }
 
-        CanGo = true;
+        _canGo = true;
     }
 }

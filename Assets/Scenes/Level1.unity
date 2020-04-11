@@ -12556,7 +12556,7 @@ Tilemap:
     second:
       serializedVersion: 2
       m_TileIndex: 5
-      m_TileSpriteIndex: 5
+      m_TileSpriteIndex: 20
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -12574,7 +12574,7 @@ Tilemap:
     second:
       serializedVersion: 2
       m_TileIndex: 4
-      m_TileSpriteIndex: 4
+      m_TileSpriteIndex: 19
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -21787,10 +21787,10 @@ Tilemap:
     m_Data: {fileID: 21300140, guid: f400ee00b51daf5458495e401cbcd358, type: 3}
   - m_RefCount: 3
     m_Data: {fileID: 21300056, guid: f400ee00b51daf5458495e401cbcd358, type: 3}
-  - m_RefCount: 1
-    m_Data: {fileID: 21300000, guid: f400ee00b51daf5458495e401cbcd358, type: 3}
-  - m_RefCount: 1
-    m_Data: {fileID: 21300028, guid: f400ee00b51daf5458495e401cbcd358, type: 3}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
+  - m_RefCount: 0
+    m_Data: {fileID: 0}
   - m_RefCount: 2
     m_Data: {fileID: 21300016, guid: f400ee00b51daf5458495e401cbcd358, type: 3}
   - m_RefCount: 4
@@ -21817,10 +21817,10 @@ Tilemap:
     m_Data: {fileID: 0}
   - m_RefCount: 0
     m_Data: {fileID: 0}
-  - m_RefCount: 0
-    m_Data: {fileID: 0}
-  - m_RefCount: 0
-    m_Data: {fileID: 0}
+  - m_RefCount: 1
+    m_Data: {fileID: 21300000, guid: f400ee00b51daf5458495e401cbcd358, type: 3}
+  - m_RefCount: 1
+    m_Data: {fileID: 21300028, guid: f400ee00b51daf5458495e401cbcd358, type: 3}
   - m_RefCount: 1
     m_Data: {fileID: 21300000, guid: cdb2fefaaa3d1564eae99bdcd1fabe45, type: 3}
   m_TileMatrixArray:
@@ -29874,6 +29874,16 @@ PrefabInstance:
       propertyPath: newRecordPanel
       value: 
       objectReference: {fileID: 346595134}
+    - target: {fileID: 2894199560191374465, guid: 81e9c3a7b3b5e174aaa5360ca632d5f2,
+        type: 3}
+      propertyPath: loseScreen
+      value: 
+      objectReference: {fileID: 917370180}
+    - target: {fileID: 2894199560191374465, guid: 81e9c3a7b3b5e174aaa5360ca632d5f2,
+        type: 3}
+      propertyPath: bonusPanel
+      value: 
+      objectReference: {fileID: 7563862114782619790}
     - target: {fileID: 2894199560191374466, guid: 81e9c3a7b3b5e174aaa5360ca632d5f2,
         type: 3}
       propertyPath: numbers.Array.size

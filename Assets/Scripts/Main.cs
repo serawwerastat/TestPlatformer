@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 using static DefaultNamespace.Constants;
 using static DefaultNamespace.Timer;
@@ -16,17 +17,17 @@ public class Main : MonoBehaviour
     public Sprite isLife, noLife;
     public GameObject pauseScreen;
     public GameObject winScreen;
-    public GameObject LoseScreen;
-    public GameObject BonusPanel;
+    public GameObject loseScreen;
+    public GameObject bonusPanel;
     public GameObject newRecordPanel;
     public Button pauseButton;
-    private float timer = 0f;
+    private float timer;
     public Text timeText;
     public TimeWork timeWork;
     public float countDown;
     public SoundEffector soundEffector;
     public AudioSource musicSource, soundSource;
-    private int bonusReward = 0;
+    private int bonusReward;
     private int levelNumber;
     public void ReloadLvl()
     {
@@ -52,7 +53,7 @@ public class Main : MonoBehaviour
 
         for (int i = 0; i < hearts.Length; i++)
         {
-            if (player.GetHP() > i)
+            if (player.GetHp() > i)
             {
                 hearts[i].sprite = isLife;
             }
@@ -111,7 +112,7 @@ public class Main : MonoBehaviour
 
         if (GetComponent<Inventory>().AreAllGemsCollected())
         {
-            BonusPanel.SetActive(true);
+            bonusPanel.SetActive(true);
             bonusReward = 500;
         }
         if (PlayerPrefs.HasKey(Coins))
@@ -149,7 +150,7 @@ public class Main : MonoBehaviour
         soundEffector.PlayLoseSound();
         Time.timeScale = 0f;
         player.enabled = false;
-        LoseScreen.SetActive(true);
+        loseScreen.SetActive(true);
     }
 
     public void OpenMainMenu()

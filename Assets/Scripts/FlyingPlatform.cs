@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DefaultNamespace;
 
 public class FlyingPlatform : MonoBehaviour
 {
@@ -19,19 +20,23 @@ public class FlyingPlatform : MonoBehaviour
 
     private void OnCollisionStay2D(Collision2D other)
     {
-        if (other.gameObject.tag == "Player")
+        if (other.gameObject.CompareTag(Constants.Player))
         {
-            float posX = transform.position.x;
-            float posY = transform.position.y;
-            transform.position =
-                Vector3.MoveTowards(transform.position,
+            var position = transform.position;
+            float posX = position.x;
+            float posY = position.y;
+            position =
+                Vector3.MoveTowards(position,
                     points[i].position,
                     speed * Time.deltaTime);
-            
-            other.gameObject.transform.position = 
-                new Vector3(other.gameObject.transform.position.x + transform.position.x - posX,
-                other.gameObject.transform.position.y + transform.position.y - posY, 
-                other.gameObject.transform.position.z);
+            transform.position = position;
+
+            var playerPosition = other.gameObject.transform.position;
+            playerPosition = 
+                new Vector3(playerPosition.x + position.x - posX,
+                playerPosition.y + position.y - posY, 
+                playerPosition.z);
+            other.gameObject.transform.position = playerPosition;
             if (transform.position == points[i].position)
             {
                 if (i < points.Length - 1)

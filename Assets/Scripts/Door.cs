@@ -4,23 +4,12 @@ using UnityEngine;
 
 public class Door : MonoBehaviour
 {
-    public bool isOpen = false;
+    public bool isOpen;
 
     public Transform door;
 
     public Sprite mid, top;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
+    
     public void Unlock()
     {
         isOpen = true;
@@ -30,6 +19,7 @@ public class Door : MonoBehaviour
 
     public void Teleport(GameObject player)
     {
-        player.transform.position = new Vector3(door.position.x, door.position.y, player.transform.position.z);
+        var position = door.position;
+        player.transform.position = new Vector3(position.x, position.y, player.transform.position.z);
     }
 }

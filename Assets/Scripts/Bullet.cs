@@ -18,10 +18,10 @@ public class Bullet : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        transform.Translate(Vector3.down * speed * Time.deltaTime);
+        transform.Translate(Vector3.down * (speed * Time.deltaTime));
     }
 
-    IEnumerator SetDisabled()
+    private IEnumerator SetDisabled()
     {
         yield return new WaitForSeconds(timeToDisable);
         gameObject.SetActive(false);
@@ -29,7 +29,6 @@ public class Bullet : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D other)
     {
-        StartCoroutine(SetDisabled());
         gameObject.SetActive(false);
     }
 }

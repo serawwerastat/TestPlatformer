@@ -6,9 +6,9 @@ public class Beatle : MonoBehaviour
 {
     public float speed = 4f;
 
-    private bool isWait = false;
+    private bool isWait;
 
-    public bool isHidden = false;
+    public bool isHidden;
 
     public float waitTime = 3f;
 
@@ -16,10 +16,9 @@ public class Beatle : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        var position = transform.position;
         point.transform.position = 
-            new Vector3(transform.position.x, 
-                transform.position.y + 1f, 
-                transform.position.z);
+            new Vector3(position.x, position.y + 1f, position.z);
     }
 
     // Update is called once per frame
@@ -36,16 +35,16 @@ public class Beatle : MonoBehaviour
         {
             if (isHidden)
             {
-                point.transform.position = new Vector3(transform.position.x, 
-                    transform.position.y + 1f, 
-                    transform.position.z);
+                var position = transform.position;
+                point.transform.position = 
+                    new Vector3(position.x, position.y + 1f, position.z);
                 isHidden = false;
             }
             else
             {
-                point.transform.position = new Vector3(transform.position.x, 
-                    transform.position.y - 1f, 
-                    transform.position.z);
+                var position = transform.position;
+                point.transform.position = 
+                    new Vector3(position.x, position.y - 1f, position.z);
                 isHidden = true;
             }
 

@@ -2,19 +2,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DefaultNamespace;
 
 public class Water : MonoBehaviour
 {
     private float timer = 0;
 
     private float timerHit;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
     void Update()
     {
         timer += Time.deltaTime;
@@ -27,7 +22,7 @@ public class Water : MonoBehaviour
 
     private void OnTriggerStay2D(Collider2D other)
     {
-        if (other.gameObject.tag == "Player")
+        if (other.gameObject.CompareTag(Constants.Player))
         {
             other.GetComponent<PlayerKeyControl>().inWater = true;
             
@@ -43,7 +38,7 @@ public class Water : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D other)
     {
-        if (other.gameObject.tag == "Player")
+        if (other.gameObject.CompareTag(Constants.Player))
         {
             other.GetComponent<PlayerKeyControl>().inWater = false;
             other.GetComponent<PlayerJoyStickControl>().inWater = false;

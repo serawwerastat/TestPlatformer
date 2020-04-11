@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using DefaultNamespace;
 
 public class Finish : MonoBehaviour
 {
@@ -9,7 +10,7 @@ public class Finish : MonoBehaviour
     public Sprite finishSprite;
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.tag == "Player")
+        if (other.gameObject.CompareTag(Constants.Player))
         {
             GetComponent<SpriteRenderer>().sprite = finishSprite;
             main.Win();

@@ -10,7 +10,7 @@ public class AdvancedAirPatrol : MonoBehaviour
 
     public float waitTime = 2f;
 
-    private bool CanGo = true;
+    private bool _canGo = true;
 
     private int index = 1;
     // Start is called before the first frame update
@@ -23,7 +23,7 @@ public class AdvancedAirPatrol : MonoBehaviour
 
     void Update()
     {
-        if (CanGo)
+        if (_canGo)
         {
             transform.position =
                 Vector3.MoveTowards(transform.position,
@@ -41,7 +41,7 @@ public class AdvancedAirPatrol : MonoBehaviour
                     index = 0;
                 }
 
-                CanGo = false;
+                _canGo = false;
                 StartCoroutine(Waiting());
             }
         }
@@ -50,6 +50,6 @@ public class AdvancedAirPatrol : MonoBehaviour
     IEnumerator Waiting()
     {
         yield return new WaitForSeconds(waitTime);
-        CanGo = true;
+        _canGo = true;
     }
 }

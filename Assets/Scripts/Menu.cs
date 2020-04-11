@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using System.Globalization;
 using static DefaultNamespace.Constants;
 using static DefaultNamespace.Timer;
 using UnityEngine;
@@ -209,8 +210,8 @@ public class Menu : MonoBehaviour
     {
         PlayerPrefs.SetInt(MusicVolume, (int) musicSlided.value);
         PlayerPrefs.SetInt(SoundVolume, (int) soundSlider.value);
-        musicText.text = musicSlided.value.ToString();
-        soundText.text = soundSlider.value.ToString();
+        musicText.text = musicSlided.value.ToString(CultureInfo.InvariantCulture);
+        soundText.text = soundSlider.value.ToString(CultureInfo.InvariantCulture);
         if (PlayerPrefs.HasKey(Coins))
         {
             coinText.text = PlayerPrefs.GetInt(Coins).ToString();

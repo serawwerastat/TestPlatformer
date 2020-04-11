@@ -21,9 +21,11 @@ public class Touches : MonoBehaviour
             }
             else
             {
-                transform.position = new Vector3(transform.position.x - 3f,
-                    transform.position.y,
-                    transform.position.z);
+                var position = transform.position;
+                position = new Vector3(position.x - 3f,
+                    position.y,
+                    position.z);
+                transform.position = position;
             }
 
         }

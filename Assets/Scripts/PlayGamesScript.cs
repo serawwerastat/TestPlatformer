@@ -4,24 +4,40 @@ using UnityEngine;
 
 public class PlayGamesScript : MonoBehaviour
 {
+    public static PlayGamesScript Instance { set; get; }
+
+    private bool isLogedIn;
+
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
-        PlayGamesClientConfiguration config = new PlayGamesClientConfiguration.Builder().Build();
-        PlayGamesPlatform.InitializeInstance(config);
-        PlayGamesPlatform.Activate();
-        
-        SignIn();
+        if (Instance == null)
+        {
+            Instance = this;
+            isLogedIn = false;
+            PlayGamesClientConfiguration config = new PlayGamesClientConfiguration.Builder().Build();
+            PlayGamesPlatform.InitializeInstance(config);
+            PlayGamesPlatform.Activate();
+            SignIn();
+            DontDestroyOnLoad(gameObject);
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
     }
 
     void SignIn()
     {
-        Social.localUser.Authenticate(success => { });
+        if (!isLogedIn)
+        {
+            Social.localUser.Authenticate(success => { isLogedIn = success; });
+        }
     }
 
     #region Achivment
 
-    public void UnlockAchievement(string id)
+    public static void UnlockAchievement(string id)
     {
         Social.ReportProgress(id, 100, success => { });
     }
@@ -31,11 +47,10 @@ public class PlayGamesScript : MonoBehaviour
         PlayGamesPlatform.Instance.IncrementAchievement(id, stepsToIncrement, success => { });
     }
 
-    public void ShowAchievements()
+    public static void ShowAchievements()
     {
         Social.ShowAchievementsUI();
     }
-    
 
     #endregion /Achievement
 
@@ -46,11 +61,10 @@ public class PlayGamesScript : MonoBehaviour
         Social.ReportScore(score, leaderboardId, success => { });
     }
 
-    public void ShowLeaderboard()
+    public static void ShowLeaderboard()
     {
         Social.ShowLeaderboardUI();
     }
 
     #endregion
-
 }

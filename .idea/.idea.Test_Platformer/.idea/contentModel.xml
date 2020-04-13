@@ -170,6 +170,7 @@
           </e>
         </e>
         <e p="Scripts" t="Include">
+          <e p="AdManager.cs" t="Include" />
           <e p="AdvancedAirPatrol.cs" t="Include" />
           <e p="AirPatrole.cs" t="Include" />
           <e p="BackGround.cs" t="Include" />
@@ -231,6 +232,9 @@
             <e p="redSheet.xml" t="Include" />
             <e p="yellowSheet.xml" t="Include" />
           </e>
+        </e>
+        <e p="UnityAds" t="Include">
+          <e p="link.xml" t="Include" />
         </e>
       </e>
       <e p="obj" t="ExcludeRecursive" />

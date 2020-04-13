@@ -41,19 +41,22 @@ public class Inventory : MonoBehaviour
     public void AddYellowGem()
     {
         yellowGemImg.color = new Color(1,1,1);
-        _yellowGem = true;  
+        _yellowGem = true;
+        PlayGamesScript.UnlockAchievement(GPGSIds.achievement_minner);
     }
     
     public void AddBlueGem()
     {
         blueGemImg.color = new Color(1,1,1);
-        _blueGem = true; 
+        _blueGem = true;
+        PlayGamesScript.UnlockAchievement(GPGSIds.achievement_minner);
     }
     
     public void AddGreenGem()
     {
         greenGemImg.color = new Color(1,1,1);
         _greenGem = true;  
+        PlayGamesScript.UnlockAchievement(GPGSIds.achievement_minner);
     }
     
     public void AddKey()

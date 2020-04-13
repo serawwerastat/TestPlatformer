@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Runtime.InteropServices;
+using UnityEngine;
 
 namespace DefaultNamespace
 {
@@ -24,18 +26,20 @@ namespace DefaultNamespace
         public const string SkinColorGreen = "Green";
         public const string SkinColorYellow = "Yellow";
         public const string SkinColorPink = "Pink";
+
         public const string SkinColorBeige = "Beige";
+
         //buying skins
         public const string HasSkinBlue = "SkinBlue";
         public const string HasSkinGreen = "SkinGreen";
         public const string HasSkinYellow = "SkinYellow";
         public const string HasSkinPink = "SkinPink";
         public const string HasSkinBeige = "SkinBeige";
-        
+
         //music config
         public const string MusicVolume = "MusicVolume";
         public const string SoundVolume = "SoundVolume";
-        
+
         //game
         public const string Level = "Lvl";
         public const string Coins = "Coins";
@@ -44,14 +48,14 @@ namespace DefaultNamespace
         public const string Player = "Player";
         public const string Ground = "Ground";
         public const string KeyBox = "KeyBox";
-        
+
         //collectibles
         public const string Coin = "Coin";
         public const string Heart = "Heart";
         public const string Mushroom = "Mushroom";
         public const string Ladder = "Ladder";
         public const string Door = "Door";
-        
+
         public const string GemGreen = "GreenGem";
         public const string GemBlue = "BlueGem";
         public const string GemYellow = "YellowGem";
@@ -64,10 +68,24 @@ namespace DefaultNamespace
         public const string Lava = "Lava";
         public const string QuickSand = "QuickSand";
         public const string Trampoline = "Trampoline";
-        
+
         //scene
         public const string MainMenu = "MainMenu";
 
+        public static String[] levelLeaderboards =
+        {
+            "NO ZERO LEVEL",
+            GPGSIds.leaderboard_level_1,
+            GPGSIds.leaderboard_level_2,
+            GPGSIds.leaderboard_level_3,
+            GPGSIds.leaderboard_level_4,
+            GPGSIds.leaderboard_level_5,
+            GPGSIds.leaderboard_level_6,
+            GPGSIds.leaderboard_level_7,
+            GPGSIds.leaderboard_level_8,
+            GPGSIds.leaderboard_level_9,
+            GPGSIds.leaderboard_level_10
+        };
     }
 
     public static class Timer
@@ -82,6 +100,7 @@ namespace DefaultNamespace
         private const float LevelWorstTime8 = 225f;
         private const float LevelWorstTime9 = 90f;
         private const float LevelWorstTime10 = 525f;
+
         public static readonly Dictionary<int, float> LevelsWorstTime = new Dictionary<int, float>()
         {
             {1, LevelWorstTime1},
@@ -102,5 +121,131 @@ namespace DefaultNamespace
             int min = sec / 60;
             return $"{min:D2}:{(sec % 60):D2}";
         }
+    }
+
+    public static class AchievementHelper
+    {
+        public static long RecountScore()
+        {
+            long score = 0;
+            int levelsCount = Timer.LevelsWorstTime.Count;
+            int currentLevel = 1;
+            while (currentLevel <= levelsCount)
+            {
+                int levelNumber = currentLevel;
+                if (PlayerPrefs.HasKey(Constants.Timer + levelNumber))
+                {
+                    int multiplier = 1;
+                    if (PlayerPrefs.HasKey(Constants.GemBlue + levelNumber) 
+                        && PlayerPrefs.GetInt(Constants.GemBlue + levelNumber) == 1)
+                    {
+                        multiplier++;
+                    }
+                    if (PlayerPrefs.HasKey(Constants.GemGreen + levelNumber) 
+                        && PlayerPrefs.GetInt(Constants.GemGreen + levelNumber) == 1)
+                    {
+                        multiplier++;
+                    }
+                    if (PlayerPrefs.HasKey(Constants.GemYellow + levelNumber) 
+                        && PlayerPrefs.GetInt(Constants.GemYellow + levelNumber) == 1)
+                    {
+                        multiplier++;
+                    }
+                    var bestTime = PlayerPrefs.GetFloat(Constants.Timer + levelNumber);
+                    score += (int) bestTime * multiplier;
+                }
+                currentLevel++;
+            }
+            return score;
+        }
+
+        public static bool isGoldenMedal(float timer, int levelNumber)
+        {
+            var worstTimeForCurrentLevel = Timer.LevelsWorstTime[levelNumber];
+            var timeRatio = timer / worstTimeForCurrentLevel;
+            if (timeRatio < 0.2f)
+            {
+                return true;
+            }
+            return false;
+        }
+
+        public static bool areAllGoldenMedals()
+        {
+            long medalCount = 0;
+            int levelsCount = Timer.LevelsWorstTime.Count;
+            int currentLevel = 1;
+            while (currentLevel <= levelsCount)
+            {
+                int levelNumber = currentLevel;
+                if (!PlayerPrefs.HasKey(Constants.Timer + levelNumber))
+                {
+                    break;
+                }
+                var bestTime = PlayerPrefs.GetFloat(Constants.Timer + levelNumber);
+                var worstTimeForCurrentLevel = Timer.LevelsWorstTime[levelNumber];
+                var timeRatio = bestTime / worstTimeForCurrentLevel;
+                if (!(timeRatio < 0.2f))
+                {
+                    break;
+                }
+                medalCount++;
+                currentLevel++;
+            }
+
+            if (levelsCount == medalCount)
+            {
+                return true;
+            }
+            return false;
+        }
+
+        public static bool areAllGemsCollected()
+        {
+            long gemsCount = 0;
+            int levelsCount = Timer.LevelsWorstTime.Count;
+            int currentLevel = 1;
+            while (currentLevel <= levelsCount)
+            {
+                int levelNumber = currentLevel;
+                if (PlayerPrefs.HasKey(Constants.GemBlue + levelNumber) 
+                    && PlayerPrefs.GetInt(Constants.GemBlue + levelNumber) == 1)
+                {
+                    gemsCount++;
+                }
+                else
+                {
+                    break;
+                }
+                if (PlayerPrefs.HasKey(Constants.GemGreen + levelNumber) 
+                    && PlayerPrefs.GetInt(Constants.GemGreen + levelNumber) == 1)
+                {
+                    gemsCount++;
+                }
+                else
+                {
+                    break;
+                }
+                if (PlayerPrefs.HasKey(Constants.GemYellow + levelNumber) 
+                    && PlayerPrefs.GetInt(Constants.GemYellow + levelNumber) == 1)
+                {
+                    gemsCount++;
+                }
+                else
+                {
+                    break;
+                }
+
+                currentLevel++;
+            }
+
+            if (gemsCount == (levelsCount * 3))
+            {
+                return true;
+            }
+
+            return false;
+        }
+        
     }
 }

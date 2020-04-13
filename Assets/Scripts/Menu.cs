@@ -18,7 +18,7 @@ public class Menu : MonoBehaviour
     public Text coinText;
     public Slider musicSlided, soundSlider;
     public Text musicText, soundText;
-
+    public AudioSource musicSource;
     private Button activeSkinButton;
     private bool hasPink;
     private bool hasGreen;
@@ -49,6 +49,7 @@ public class Menu : MonoBehaviour
         InitializePlayerPrefKeys();
         CheckBoughtSkins();
         musicSlided.value = PlayerPrefs.GetInt(MusicVolume);
+        musicSource.volume = PlayerPrefs.GetInt(MusicVolume) / 9f;
         soundSlider.value = PlayerPrefs.GetInt(SoundVolume);
     }
 
@@ -209,6 +210,7 @@ public class Menu : MonoBehaviour
     private void Update()
     {
         PlayerPrefs.SetInt(MusicVolume, (int) musicSlided.value);
+        musicSource.volume = PlayerPrefs.GetInt(MusicVolume) / 9f;
         PlayerPrefs.SetInt(SoundVolume, (int) soundSlider.value);
         musicText.text = musicSlided.value.ToString(CultureInfo.InvariantCulture);
         soundText.text = soundSlider.value.ToString(CultureInfo.InvariantCulture);
@@ -220,10 +222,17 @@ public class Menu : MonoBehaviour
         {
             coinText.text = "0";
         }
+        
+        if (Input.GetKeyDown(KeyCode.Escape)) 
+            Application.Quit(); 
     }
 
     public void OpenScene(int index)
     {
+        if (index == 1)
+        {
+            PlayGamesScript.UnlockAchievement(GPGSIds.achievement_welcome);
+        }
         SceneManager.LoadScene(index);
     }
 
@@ -252,6 +261,7 @@ public class Menu : MonoBehaviour
             PlayerPrefs.SetString(SkinActive, SkinColorPink);
             if (!hasPink)
             {
+                PlayGamesScript.UnlockAchievement(GPGSIds.achievement_new_look);
                 PlayerPrefs.SetInt(Coins, PlayerPrefs.GetInt(Coins) - cost);
                 hasPink = true;
             }
@@ -270,6 +280,7 @@ public class Menu : MonoBehaviour
             PlayerPrefs.SetString(SkinActive, SkinColorGreen);
             if (!hasGreen)
             {
+                PlayGamesScript.UnlockAchievement(GPGSIds.achievement_new_look);
                 PlayerPrefs.SetInt(Coins, PlayerPrefs.GetInt(Coins) - cost);
                 hasGreen = true;
             }
@@ -289,6 +300,7 @@ public class Menu : MonoBehaviour
             PlayerPrefs.SetString(SkinActive, SkinColorYellow);
             if (!hasYellow)
             {
+                PlayGamesScript.UnlockAchievement(GPGSIds.achievement_new_look);
                 PlayerPrefs.SetInt(Coins, PlayerPrefs.GetInt(Coins) - cost);
                 hasYellow = true;
             }
@@ -307,9 +319,29 @@ public class Menu : MonoBehaviour
             PlayerPrefs.SetString(SkinActive, SkinColorBeige);
             if (!hasBeige)
             {
+                PlayGamesScript.UnlockAchievement(GPGSIds.achievement_new_look);
                 PlayerPrefs.SetInt(Coins, PlayerPrefs.GetInt(Coins) - cost);
                 hasBeige = true;
             }
         }
+    }
+
+    public void ShowRewardedAd()
+    {
+        // int musicVolume = (int) musicSource.volume;
+        // musicSource.volume = 0;
+        // PlayerPrefs.SetInt(MusicVolume, 0);
+        AdManager.PlayRewardedVideoAd();
+        musicSource.volume = PlayerPrefs.GetInt(MusicVolume) / 9f;
+    }
+
+    public void ShowAchievements()
+    {
+        PlayGamesScript.ShowAchievements();
+    }
+    
+    public void ShowLeaderboard()
+    {
+        PlayGamesScript.ShowLeaderboard();
     }
 }

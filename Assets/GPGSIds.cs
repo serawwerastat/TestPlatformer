@@ -24,9 +24,27 @@
 
 public static class GPGSIds
 {
-        public const string achievement_test = "CgkIz9Xzh7AJEAIQAA"; // <GPGSID>
-        public const string leaderboard_test_1 = "CgkIz9Xzh7AJEAIQAQ"; // <GPGSID>
-        public const string leaderboard_test_2 = "CgkIz9Xzh7AJEAIQAg"; // <GPGSID>
+        public const string achievement_champion = "CgkIz9Xzh7AJEAIQCw"; // <GPGSID>
+        public const string leaderboard_level_3 = "CgkIz9Xzh7AJEAIQDQ"; // <GPGSID>
+        public const string leaderboard_level_2 = "CgkIz9Xzh7AJEAIQAg"; // <GPGSID>
+        public const string leaderboard_level_1 = "CgkIz9Xzh7AJEAIQAQ"; // <GPGSID>
+        public const string achievement_explorer = "CgkIz9Xzh7AJEAIQBg"; // <GPGSID>
+        public const string leaderboard_level_6 = "CgkIz9Xzh7AJEAIQEA"; // <GPGSID>
+        public const string leaderboard_level_5 = "CgkIz9Xzh7AJEAIQDw"; // <GPGSID>
+        public const string leaderboard_level_4 = "CgkIz9Xzh7AJEAIQDg"; // <GPGSID>
+        public const string leaderboard_level_7 = "CgkIz9Xzh7AJEAIQEQ"; // <GPGSID>
+        public const string achievement_welcome = "CgkIz9Xzh7AJEAIQAA"; // <GPGSID>
+        public const string achievement_runner = "CgkIz9Xzh7AJEAIQBQ"; // <GPGSID>
+        public const string leaderboard_level_10 = "CgkIz9Xzh7AJEAIQFA"; // <GPGSID>
+        public const string achievement_collector = "CgkIz9Xzh7AJEAIQCg"; // <GPGSID>
+        public const string achievement_first_step = "CgkIz9Xzh7AJEAIQBA"; // <GPGSID>
+        public const string leaderboard_level_8 = "CgkIz9Xzh7AJEAIQEg"; // <GPGSID>
+        public const string achievement_minner = "CgkIz9Xzh7AJEAIQCA"; // <GPGSID>
+        public const string achievement_speed_runner = "CgkIz9Xzh7AJEAIQBw"; // <GPGSID>
+        public const string achievement_new_look = "CgkIz9Xzh7AJEAIQCQ"; // <GPGSID>
+        public const string leaderboard_overall = "CgkIz9Xzh7AJEAIQFQ"; // <GPGSID>
+        public const string leaderboard_level_9 = "CgkIz9Xzh7AJEAIQEw"; // <GPGSID>
+        public const string achievement_hidden = "CgkIz9Xzh7AJEAIQDA"; // <GPGSID>
 
 }
 

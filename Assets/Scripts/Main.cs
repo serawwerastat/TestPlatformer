@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using DefaultNamespace;
+using GooglePlayGames;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.Serialization;
@@ -31,6 +33,7 @@ public class Main : MonoBehaviour
     private int levelNumber;
     public void ReloadLvl()
     {
+        AdManager.ShowAddAfterDeath();
         Time.timeScale = 1f;
         player.enabled = true;
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
@@ -107,6 +110,14 @@ public class Main : MonoBehaviour
         
         if (!PlayerPrefs.HasKey(Level) || PlayerPrefs.GetInt(Level) < levelNumber)
         {
+            if (levelNumber == 1)
+            {
+                PlayGamesScript.UnlockAchievement(GPGSIds.achievement_first_step);
+            }
+            if (levelNumber == 10)
+            {
+                PlayGamesScript.UnlockAchievement(GPGSIds.achievement_runner);
+            }
             PlayerPrefs.SetInt(Level,  SceneManager.GetActiveScene().buildIndex);
         }
 
@@ -114,6 +125,7 @@ public class Main : MonoBehaviour
         {
             bonusPanel.SetActive(true);
             bonusReward = 500;
+            PlayGamesScript.UnlockAchievement(GPGSIds.achievement_collector);
         }
         if (PlayerPrefs.HasKey(Coins))
         {
@@ -123,29 +135,53 @@ public class Main : MonoBehaviour
         {
             PlayerPrefs.SetInt(Coins, player.GetCoins() + bonusReward);
         }
+        GetComponent<Inventory>().RecountItems();
 
-        if (PlayerPrefs.HasKey(Timer + levelNumber))
+        if (AchievementHelper.areAllGemsCollected())
         {
-            var bestTime = PlayerPrefs.GetFloat(Timer + levelNumber);
+            PlayGamesScript.UnlockAchievement(GPGSIds.achievement_explorer);
+        }
+
+        if (PlayerPrefs.HasKey(Constants.Timer + levelNumber))
+        {
+            var bestTime = PlayerPrefs.GetFloat(Constants.Timer + levelNumber);
             if (bestTime > timer)
             {
-                PlayerPrefs.SetFloat(Timer + levelNumber, timer);
-                newRecordPanel.SetActive(true);
+                setRecordAndCheckAchievements();
             }
         }
         else
         {
-            PlayerPrefs.SetFloat(Timer + levelNumber, timer);
-            newRecordPanel.SetActive(true);
+            setRecordAndCheckAchievements();
         }
+    }
 
-        
-        
-        GetComponent<Inventory>().RecountItems();
+    private void setRecordAndCheckAchievements()
+    {
+        PlayerPrefs.SetFloat(Constants.Timer + levelNumber, timer);
+        PlayGamesScript.AddScoreToLeaderboard(levelLeaderboards[levelNumber], 
+            (long) (timer * 1000));
+        if (AchievementHelper.isGoldenMedal(timer, levelNumber))
+        {
+            PlayGamesScript.UnlockAchievement(GPGSIds.achievement_champion);
+        }
+        if (AchievementHelper.areAllGoldenMedals())
+        {
+            PlayGamesScript.UnlockAchievement(GPGSIds.achievement_speed_runner);
+        }
+        long score = AchievementHelper.RecountScore();
+        PlayGamesScript.AddScoreToLeaderboard(GPGSIds.leaderboard_overall, score);
+        newRecordPanel.SetActive(true);
     }
     
     public void Lose()
     {
+        // musicSource.volume = 0;
+        // soundSource.volume = 0;
+        AdManager.ShowAddAfterDeath();
+        // musicSource.volume = PlayerPrefs.GetInt(MusicVolume) / 9f;
+        // soundSource.volume = PlayerPrefs.GetInt(SoundVolume) / 9f;
+        
         pauseButton.interactable = false;
         soundEffector.PlayLoseSound();
         Time.timeScale = 0f;

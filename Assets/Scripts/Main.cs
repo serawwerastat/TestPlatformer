@@ -137,7 +137,7 @@ public class Main : MonoBehaviour
         }
         GetComponent<Inventory>().RecountItems();
 
-        if (AchievementHelper.areAllGemsCollected())
+        if (AchievementHelper.AreAllGemsCollected())
         {
             PlayGamesScript.UnlockAchievement(GPGSIds.achievement_explorer);
         }
@@ -161,11 +161,11 @@ public class Main : MonoBehaviour
         PlayerPrefs.SetFloat(Constants.Timer + levelNumber, timer);
         PlayGamesScript.AddScoreToLeaderboard(levelLeaderboards[levelNumber], 
             (long) (timer * 1000));
-        if (AchievementHelper.isGoldenMedal(timer, levelNumber))
+        if (AchievementHelper.IsGoldenMedal(timer, levelNumber))
         {
             PlayGamesScript.UnlockAchievement(GPGSIds.achievement_champion);
         }
-        if (AchievementHelper.areAllGoldenMedals())
+        if (AchievementHelper.AreAllGoldenMedals())
         {
             PlayGamesScript.UnlockAchievement(GPGSIds.achievement_speed_runner);
         }

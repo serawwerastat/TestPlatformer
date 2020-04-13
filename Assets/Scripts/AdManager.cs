@@ -110,7 +110,7 @@ public class AdManager : MonoBehaviour, IUnityAdsListener
         //     PlayRewardedVideoAd();
         //     return;
         // }
-        if (_dieCount % 3 == 0)
+        if (_dieCount % 4 == 0)
         {
             PlayInterstitialAd();
         }
@@ -124,7 +124,7 @@ public class AdManager : MonoBehaviour, IUnityAdsListener
         //     PlayRewardedVideoAd();
         //     return;
         // }
-        if (_restartCount % 5 == 0)
+        if (_restartCount % 6 == 0)
         {
             PlayInterstitialAd();
         }

@@ -152,14 +152,15 @@ namespace DefaultNamespace
                         multiplier++;
                     }
                     var bestTime = PlayerPrefs.GetFloat(Constants.Timer + levelNumber);
-                    score += (int) bestTime * multiplier;
+                    var remainingTime = Timer.LevelsWorstTime[levelNumber] - bestTime;
+                    score += (int) remainingTime * multiplier;
                 }
                 currentLevel++;
             }
             return score;
         }
 
-        public static bool isGoldenMedal(float timer, int levelNumber)
+        public static bool IsGoldenMedal(float timer, int levelNumber)
         {
             var worstTimeForCurrentLevel = Timer.LevelsWorstTime[levelNumber];
             var timeRatio = timer / worstTimeForCurrentLevel;
@@ -170,7 +171,7 @@ namespace DefaultNamespace
             return false;
         }
 
-        public static bool areAllGoldenMedals()
+        public static bool AreAllGoldenMedals()
         {
             long medalCount = 0;
             int levelsCount = Timer.LevelsWorstTime.Count;
@@ -200,7 +201,7 @@ namespace DefaultNamespace
             return false;
         }
 
-        public static bool areAllGemsCollected()
+        public static bool AreAllGemsCollected()
         {
             long gemsCount = 0;
             int levelsCount = Timer.LevelsWorstTime.Count;
@@ -246,6 +247,40 @@ namespace DefaultNamespace
 
             return false;
         }
+    }
+
+    public static class SaveLoadManager
+    {
+        public static void SaveInt(string key, int value)
+        {
+            PlayerPrefs.SetInt(key, value);
+        }
         
+        public static int GetInt(string key)
+        {
+           return PlayerPrefs.GetInt(key);
+        }
+        
+        public static void SaveFloat(string key, float value)
+        {
+            PlayerPrefs.SetFloat(key, value);
+            
+        }
+        
+        public static float GetFloat(string key)
+        {
+            return PlayerPrefs.GetFloat(key);
+        }
+        
+        public static void SaveString(string key, string value)
+        {
+            PlayerPrefs.SetString(key, value);
+            
+        }
+        
+        public static string GetString(string key)
+        {
+            return PlayerPrefs.GetString(key);
+        }
     }
 }

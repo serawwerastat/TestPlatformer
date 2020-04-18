@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 using DefaultNamespace;
 
 public class FlyingPlatform : MonoBehaviour
@@ -12,7 +9,6 @@ public class FlyingPlatform : MonoBehaviour
 
     private int i = 1;
 
-    // Start is called before the first frame update
     void Start()
     {
         transform.position = new Vector3(points[0].position.x, points[0].position.y, transform.position.z);

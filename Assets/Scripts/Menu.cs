@@ -1,11 +1,8 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using System.Globalization;
+﻿using System.Globalization;
 using static DefaultNamespace.Constants;
 using static DefaultNamespace.Timer;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.Serialization;
 using UnityEngine.UI;
 
 public class Menu : MonoBehaviour
@@ -27,9 +24,7 @@ public class Menu : MonoBehaviour
 
     private void Start()
     {
-        //TODO Remove
-        // PlayerPrefs.SetInt(Coins, 100);
-
+        
         if (PlayerPrefs.HasKey(Level))
         {
             CheckCompletedLevel();
@@ -222,9 +217,12 @@ public class Menu : MonoBehaviour
         {
             coinText.text = "0";
         }
-        
-        if (Input.GetKeyDown(KeyCode.Escape)) 
-            Application.Quit(); 
+
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            PlayGamesScript.SignOut();
+            Application.Quit();
+        }
     }
 
     public void OpenScene(int index)
@@ -328,11 +326,7 @@ public class Menu : MonoBehaviour
 
     public void ShowRewardedAd()
     {
-        // int musicVolume = (int) musicSource.volume;
-        // musicSource.volume = 0;
-        // PlayerPrefs.SetInt(MusicVolume, 0);
         AdManager.PlayRewardedVideoAd();
-        musicSource.volume = PlayerPrefs.GetInt(MusicVolume) / 9f;
     }
 
     public void ShowAchievements()

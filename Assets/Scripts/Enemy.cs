@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections;
 using DefaultNamespace;
 using UnityEngine;
 
@@ -24,7 +22,6 @@ public class Enemy : MonoBehaviour
       Instantiate(drop, transform.position, Quaternion.identity);
     }
     GetComponent<Animator>().SetBool("dead", true);
-    // GetComponent<Rigidbody2D>().bodyType = RigidbodyType2D.Dynamic;
     GetComponent<Collider2D>().enabled = false;
     transform.GetChild(0).GetComponent<Collider2D>().enabled = false;
     yield return new WaitForSeconds(2);

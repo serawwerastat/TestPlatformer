@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Beatle : MonoBehaviour
@@ -13,7 +12,7 @@ public class Beatle : MonoBehaviour
     public float waitTime = 3f;
 
     public Transform point;
-    // Start is called before the first frame update
+
     void Start()
     {
         var position = transform.position;
@@ -21,7 +20,7 @@ public class Beatle : MonoBehaviour
             new Vector3(position.x, position.y + 1f, position.z);
     }
 
-    // Update is called once per frame
+
     void Update()
     {
         if (!isWait)

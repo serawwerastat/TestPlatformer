@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using DefaultNamespace;
-using GooglePlayGames;
+﻿using DefaultNamespace;
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.Serialization;
 using UnityEngine.UI;
 using static DefaultNamespace.Constants;
 using static DefaultNamespace.Timer;
@@ -33,7 +28,7 @@ public class Main : MonoBehaviour
     private int levelNumber;
     public void ReloadLvl()
     {
-        AdManager.ShowAddAfterDeath();
+        AdManager.ShowAddAfterRestart();
         Time.timeScale = 1f;
         player.enabled = true;
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
@@ -147,16 +142,16 @@ public class Main : MonoBehaviour
             var bestTime = PlayerPrefs.GetFloat(Constants.Timer + levelNumber);
             if (bestTime > timer)
             {
-                setRecordAndCheckAchievements();
+                SetRecordAndCheckAchievements();
             }
         }
         else
         {
-            setRecordAndCheckAchievements();
+            SetRecordAndCheckAchievements();
         }
     }
 
-    private void setRecordAndCheckAchievements()
+    private void SetRecordAndCheckAchievements()
     {
         PlayerPrefs.SetFloat(Constants.Timer + levelNumber, timer);
         PlayGamesScript.AddScoreToLeaderboard(levelLeaderboards[levelNumber], 
@@ -176,12 +171,7 @@ public class Main : MonoBehaviour
     
     public void Lose()
     {
-        // musicSource.volume = 0;
-        // soundSource.volume = 0;
         AdManager.ShowAddAfterDeath();
-        // musicSource.volume = PlayerPrefs.GetInt(MusicVolume) / 9f;
-        // soundSource.volume = PlayerPrefs.GetInt(SoundVolume) / 9f;
-        
         pauseButton.interactable = false;
         soundEffector.PlayLoseSound();
         Time.timeScale = 0f;

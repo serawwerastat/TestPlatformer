@@ -7,8 +7,7 @@ public class PlayGamesScript : MonoBehaviour
     public static PlayGamesScript Instance { set; get; }
 
     private bool isLogedIn;
-
-    // Start is called before the first frame update
+    
     void Awake()
     {
         if (Instance == null)
@@ -33,6 +32,11 @@ public class PlayGamesScript : MonoBehaviour
         {
             Social.localUser.Authenticate(success => { isLogedIn = success; });
         }
+    }
+
+    public static void SignOut()
+    {
+        PlayGamesPlatform.Instance.SignOut();
     }
 
     #region Achivment

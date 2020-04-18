@@ -1,5 +1,4 @@
-﻿using System;
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.Advertisements;
 using static DefaultNamespace.Constants;
 
@@ -105,11 +104,6 @@ public class AdManager : MonoBehaviour, IUnityAdsListener
     public static void ShowAddAfterDeath()
     {
         _dieCount++;
-        // if (dieCount % 6 == 0)
-        // {
-        //     PlayRewardedVideoAd();
-        //     return;
-        // }
         if (_dieCount % 4 == 0)
         {
             PlayInterstitialAd();
@@ -119,11 +113,6 @@ public class AdManager : MonoBehaviour, IUnityAdsListener
     public static void ShowAddAfterRestart()
     {
         _restartCount++;
-        // if (dieCount % 10 == 0)
-        // {
-        //     PlayRewardedVideoAd();
-        //     return;
-        // }
         if (_restartCount % 6 == 0)
         {
             PlayInterstitialAd();

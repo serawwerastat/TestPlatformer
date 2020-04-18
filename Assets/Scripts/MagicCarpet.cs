@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections;
-using System.Collections.Generic;
-using DefaultNamespace;
+﻿using DefaultNamespace;
 using UnityEngine;
 
 public class MagicCarpet : MonoBehaviour
@@ -10,7 +7,7 @@ public class MagicCarpet : MonoBehaviour
 
     public Transform right;
 
-    // Start is called before the first frame update
+
     private void OnTriggerStay2D(Collider2D other)
     {
         if (other.gameObject.CompareTag(Constants.Player))
